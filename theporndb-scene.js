@@ -1,4 +1,4 @@
-async ($log, $axios, sceneName, scenePath) => {
+async ({$log, $axios, sceneName, scenePath, $createImage}) => {
 
   $log('Searching api for ' + sceneName)
   $log('https://master.metadataapi.net/api/scenes?parse=' + scenePath)
@@ -19,10 +19,12 @@ async ($log, $axios, sceneName, scenePath) => {
   const scene = sceneResults.data.data;
   $log('Found results for ' + scene.id)
 
+  const thumbnailFile = await $createImage(scene.background.large, scene.id, true)
+
   return {
     description: scene.description,
     releaseDate: new Date(scene.date).getTime(),
-    thumbnail: scene.background.large,
+    thumbnail: thumbnailFile,
     name: scene.title,
     labels: scene.tags.map(tag => tag.tag),
     actors: scene.performers.map(p => p.name),
