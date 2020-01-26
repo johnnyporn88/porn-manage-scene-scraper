@@ -4,14 +4,19 @@
 * Modify config.json
 ```
  "PLUGINS": {
-  "theporndb": {
-   "path": "./scrapers/theporndb.js"
+  "theporndb-scene": {
+   "path": "./scrapers/theporndb-scene.js"
+  },
+  "theporndb-actor": {
+   "path": "./scrapers/theporndb-actor.js"
   }
  },
   "PLUGIN_EVENTS": {
-  "actorCreated": [],
+  "actorCreated": [
+      "theporndb-actor"
+  ],
   "sceneCreated": [
-   "theporndb"
+   "theporndb-scene"
   ]
  },
  ```
