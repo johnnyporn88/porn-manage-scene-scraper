@@ -11,7 +11,7 @@ async ({ $axios, $log, actorName, $createImage }) => {
   $log('Searching ThePornDB for ' + actorName)
   $log('https://master.metadataapi.net/api/performers?q=' + actorName)
 
-  const results = await $axios.get('https://master.metadataapi.net/api/performers?q=' + encodeURIComponent(actorName))
+  const results = await $axios.get('https://metadataapi.net/api/performers?q=' + encodeURIComponent(actorName))
 
   if (results.data.data.length === 0) {
     $log('No results found')
@@ -23,7 +23,7 @@ async ({ $axios, $log, actorName, $createImage }) => {
     return {}
   }
 
-  const performerResults = await $axios.get('https://master.metadataapi.net/api/performers/' + results.data.data[0].id)
+  const performerResults = await $axios.get('https://metadataapi.net/api/performers/' + results.data.data[0].id)
   const performer = performerResults.data.data
   $log('Found results for ' + performer.id)
 
